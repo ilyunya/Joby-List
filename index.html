@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="theme.css">
+    <title>vue train</title>
+</head>
+<body>
+
+    <div class="container pt-5" id="app">
+        <div class="card center">
+            <h1>{{ titleText }}</h1>
+            <div class="form-control">
+                <input 
+                type="text" 
+                :placeholder="placeholderInput" 
+                :value="inputValue"
+                @input="resultApp"
+                @keypress.enter="addMyNote"
+                >
+            </div>
+            <h2>
+                Заметка: {{inputValue}}
+            </h2>
+            <button class="btn" v-model="text" @click="addMyNote">Добавить</button>
+            <hr>
+            <ul class="list" v-if="notes.length !== 0">
+                <li class="list-item" v-for="(myNote, idx) of notes">
+                    {{ toUpperCase(myNote) }}
+                    <button class="btn danger" @click="deleteNotes">удалить</button>
+                </li>
+                <hr>
+                <li>
+                    <strong>Общее количество заметок: {{ notes.length }}</strong>
+                </li>
+            </ul>
+            <div v-if="notes.length === 0"> Заметок пока нет. Добавьте одну </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="codes.js"></script>
+</body>
+</html>
